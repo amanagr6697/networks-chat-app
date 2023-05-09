@@ -12,10 +12,11 @@ import { useEffect } from "react";
 import { useHistory } from "react-router";
 import Login from "../components/Authentication/Login";
 import Signup from "../components/Authentication/Signup";
+import { useTheme } from "../App.js";
 
 function Homepage() {
   const history = useHistory();
-
+  const { theme } = useTheme();
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem("userInfo"));
 
@@ -28,21 +29,31 @@ function Homepage() {
         d="flex"
         justifyContent="center"
         p={3}
-        bg="black"
+        bg={theme === "light" ? "black" : "white"}
         w="100%"
         m="40px 0 15px 0"
         borderRadius="lg"
         borderWidth="1px"
       >
-        <Text fontSize="4xl" fontFamily="Lora">
-          अमन  मिहिर  वार्तालाप
+        <Text
+          color={theme === "light" ? "white" : "black"}
+          fontSize="4xl"
+          fontFamily="Lora"
+        >
+          अमन मिहिर वार्तालाप
         </Text>
       </Box>
-      <Box bg="black" w="100%" p={4} borderRadius="lg" borderWidth="1px">
+      <Box
+        bg={theme === "light" ? "black" : "white"}
+        w="100%"
+        p={4}
+        borderRadius="lg"
+        borderWidth="1px"
+      >
         <Tabs isFitted variant="soft-rounded">
           <TabList mb="1em">
-            <Tab color="white">Login</Tab>
-            <Tab color="white">Sign Up</Tab>
+            <Tab color={theme === "light" ? "white" : "black"}>Login</Tab>
+            <Tab color={theme === "light" ? "white" : "black"}>Sign Up</Tab>
           </TabList>
           <TabPanels>
             <TabPanel>

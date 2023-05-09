@@ -3,9 +3,9 @@
 .App {
   min-height: 100vh;
   display: flex;
-  background-image: url("./background.png");
+  /* background-image: url("./background.png");
   background-position: center;
-  background-size: cover;
+  background-size: cover; */
 }
 
 ::-webkit-scrollbar {
@@ -19,6 +19,40 @@
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
+}
+
+#light {
+  background-color: #ffffff;
+}
+
+#dark {
+  background-color: #000000;
+}
+
+@media (max-width: 600px) {
+  .main {
+    border-radius: 0px;
+  }
+}
+
+.switch {
+  display: flex;
+  width: 100vw;
+  height: 100px;
+  justify-content: center;
+  align-items: center;
+}
+
+.switch label {
+  margin: 10px;
+}
+
+#light .switch label {
+  color: black;
+}
+
+#dark .switch label {
+  color: white;
 }
 
 font-family: 'Lora', cursive;

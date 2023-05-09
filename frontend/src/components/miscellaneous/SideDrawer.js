@@ -31,10 +31,12 @@ import { Effect } from "react-notification-badge";
 import { getSender } from "../../config/ChatLogics";
 import UserListItem from "../userAvatar/UserListItem";
 import { ChatState } from "../../Context/ChatProvider";
+import { useTheme } from "../../App.js";
 
 // const User = require("../../models/userModel");
 
 function SideDrawer() {
+  const { theme } = useTheme();
   const [search, setSearch] = useState("");
   const [searchResult, setSearchResult] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -53,12 +55,21 @@ function SideDrawer() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const history = useHistory();
 
-  const logoutHandler = async () => {
-    const aman=JSON.parse(localStorage.getItem("userInfo"));
+  const logoutHandler = async (userId) => {
+    // const aman = JSON.parse(localStorage.getItem("userInfo"));
     // console.log(aman)
     // console.log("aman\n")
     // console.log(aman._id)
     // await User.findByIdAndUpdate(aman._id, { lastTime:  Date.now });
+    const config = {
+      headers: {
+        Authorization: `Bearer ${user.token}`,
+      },
+    };
+    const loginout = true;
+    console.log("hello");
+    // const x = await axios.get(`/api/user/logout?userId=${userId}`, config);
+    console.log("hello after");
     localStorage.removeItem("userInfo");
     history.push("/");
   };
@@ -85,8 +96,8 @@ function SideDrawer() {
       };
 
       const { data } = await axios.get(`/api/user?search=${search}`, config);
-      console.log(data)
-      console.log("aman")
+      console.log(data);
+      console.log("aman");
       setLoading(false);
       setSearchResult(data);
     } catch (error) {
@@ -136,7 +147,7 @@ function SideDrawer() {
         d="flex"
         justifyContent="space-between"
         alignItems="center"
-        bg="black"
+        bg={theme === "light" ? "black" : "white"}
         w="100%"
         p="5px 10px 5px 10px"
         borderWidth="5px"
@@ -144,12 +155,20 @@ function SideDrawer() {
         <Tooltip label="Search Users to chat" hasArrow placement="bottom-end">
           <Button variant="ghost" onClick={onOpen}>
             <i className="fas fa-search"></i>
-            <Text d={{ base: "none", md: "flex" }} px={4}>
+            <Text
+              color={theme === "light" ? "white" : "black"}
+              d={{ base: "none", md: "flex" }}
+              px={4}
+            >
               Search User
             </Text>
           </Button>
         </Tooltip>
-        <Text fontSize="2xl" fontFamily="Lora">
+        <Text
+          color={theme === "light" ? "white" : "black"}
+          fontSize="2xl"
+          fontFamily="Lora"
+        >
           अमन मिहिर वार्तालाप
         </Text>
         <div>
@@ -159,7 +178,11 @@ function SideDrawer() {
                 count={notification.length}
                 effect={Effect.SCALE}
               />
-              <BellIcon fontSize="2xl" m={1} />
+              <BellIcon
+                color={theme === "light" ? "white" : "black"}
+                fontSize="2xl"
+                m={1}
+              />
             </MenuButton>
             <MenuList pl={2}>
               {!notification.length && "No New Messages"}
@@ -179,7 +202,11 @@ function SideDrawer() {
             </MenuList>
           </Menu>
           <Menu>
-            <MenuButton as={Button} bg="black" rightIcon={<ChevronDownIcon />}>
+            <MenuButton
+              as={Button}
+              bg={theme === "light" ? "black" : "white"}
+              rightIcon={<ChevronDownIcon />}
+            >
               <Avatar
                 size="sm"
                 cursor="pointer"
@@ -192,7 +219,9 @@ function SideDrawer() {
                 <MenuItem>My Profile</MenuItem>{" "}
               </ProfileModal>
               <MenuDivider />
-              <MenuItem onClick={logoutHandler}>Logout</MenuItem>
+              <MenuItem onClick={() => logoutHandler(user._id)}>
+                Logout
+              </MenuItem>
             </MenuList>
           </Menu>
         </div>

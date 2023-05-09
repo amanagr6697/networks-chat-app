@@ -6,8 +6,10 @@ import { useState } from "react";
 import axios from "axios";
 import { useToast } from "@chakra-ui/react";
 import { useHistory } from "react-router-dom";
+import { useTheme } from "../../App.js";
 
 const Login = () => {
+  const { theme } = useTheme();
   const [show, setShow] = useState(false);
   const handleClick = () => setShow(!show);
   const toast = useToast();
@@ -38,10 +40,10 @@ const Login = () => {
           "Content-type": "application/json",
         },
       };
-
+      const loginout = false;
       const { data } = await axios.post(
         "/api/user/login",
-        { email, password },
+        { email, password, loginout },
         config
       );
 
@@ -72,22 +74,33 @@ const Login = () => {
   return (
     <VStack color="white" spacing="10px">
       <FormControl id="email" isRequired>
-        <FormLabel>Email Address</FormLabel>
+        <FormLabel color={theme === "light" ? "white" : "black"}>
+          Email Address
+        </FormLabel>
         <Input
+          color={theme === "light" ? "white" : "black"}
           value={email}
           type="email"
           placeholder="Enter Your Email Address"
+          _placeholder={{ color: "#718D97" }}
+          // placeholderTextColor={theme === "light" ? "black" : "white"}
           onChange={(e) => setEmail(e.target.value)}
         />
       </FormControl>
-      <FormControl id="password" isRequired>
+      <FormControl
+        color={theme === "light" ? "white" : "black"}
+        id="password"
+        isRequired
+      >
         <FormLabel>Password</FormLabel>
         <InputGroup size="md">
           <Input
+            color={theme === "light" ? "white" : "black"}
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             type={show ? "text" : "password"}
             placeholder="Enter password"
+            _placeholder={{ color: "#718D97" }}
           />
           <InputRightElement width="4.5rem">
             <Button h="1.75rem" size="sm" onClick={handleClick}>

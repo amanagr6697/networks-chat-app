@@ -1,9 +1,11 @@
 import { Avatar } from "@chakra-ui/avatar";
 import { Box, Text } from "@chakra-ui/layout";
 import { ChatState } from "../../Context/ChatProvider";
+import { useTheme } from "../../App.js";
 
 const UserListItem = ({ handleFunction,user }) => {
   // const { user } = ChatState();
+  const { theme } = useTheme();
 
   return (
     <Box
@@ -17,7 +19,7 @@ const UserListItem = ({ handleFunction,user }) => {
       w="100%"
       d="flex"
       alignItems="center"
-      color="black"
+      color={theme === "light" ? "black" : "white"}
       px={3}
       py={2}
       mb={2}

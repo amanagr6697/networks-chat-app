@@ -11,14 +11,18 @@ import ProfileModal from "./miscellaneous/ProfileModal";
 import ScrollableChat from "./ScrollableChat";
 import Lottie from "react-lottie";
 import animationData from "../animations/typing.json";
+import { useTheme } from "../App.js";
 
 import io from "socket.io-client";
 import UpdateGroupChatModal from "./miscellaneous/UpdateGroupChatModal";
 import { ChatState } from "../Context/ChatProvider";
+// import { useTheme } from "../App.js";
+
 const ENDPOINT = "http://localhost:5000"; // "https://talk-a-tive.herokuapp.com"; -> After deployment
 var socket, selectedChatCompare;
 
 const SingleChat = ({ fetchAgain, setFetchAgain }) => {
+    const { theme } = useTheme();
   const [messages, setMessages] = useState([]);
   const [loading, setLoading] = useState(false);
   const [newMessage, setNewMessage] = useState("");
@@ -166,7 +170,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
             fontSize={{ base: "18px", md: "20px" }}
             pb={3}
             px={2}
-            bg="black"
+            bg={theme === "light" ? "black" : "white"}
             w="100%"
             fontFamily="Lora"
             d="flex"
@@ -181,7 +185,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
             {messages &&
               (!selectedChat.isGroupChat ? (
                 <>
-                  {getSender(user, selectedChat.users)} <br/>
+                  {getSender(user, selectedChat.users)} <br />
                   {getSenderTime(user, selectedChat.users)}
                   <ProfileModal
                     user={getSenderFull(user, selectedChat.users)}
@@ -203,7 +207,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
             flexDir="column"
             justifyContent="flex-end"
             p={3}
-            bg="#000000"
+            bg={theme === "light" ? "black" : "white"}
             w="100%"
             h="100%"
             borderRadius="lg"
@@ -243,8 +247,9 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
               )}
               <Input
                 variant="filled"
-                bg="black"
+                bg={theme === "dark" ? "black" : "white"}
                 placeholder="Enter a message.."
+                _placeholder={{ color: "#718D97" }}
                 value={newMessage}
                 onChange={typingHandler}
               />
@@ -254,7 +259,12 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
       ) : (
         // to get socket.io on same page
         <Box d="flex" alignItems="center" justifyContent="center" h="100%">
-          <Text fontSize="3xl" pb={3} fontFamily="Lora">
+          <Text
+            color={theme === "dark" ? "black" : "white"}
+            fontSize="3xl"
+            pb={3}
+            fontFamily="Lora"
+          >
             Click on a user to start chatting
           </Text>
         </Box>

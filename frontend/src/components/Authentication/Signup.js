@@ -6,8 +6,10 @@ import { useToast } from "@chakra-ui/toast";
 import axios from "axios";
 import { useState } from "react";
 import { useHistory } from "react-router";
+import { useTheme } from "../../App.js";
 
 const Signup = () => {
+      const { theme } = useTheme();
   const [show, setShow] = useState(false);
   const handleClick = () => setShow(!show);
   const toast = useToast();
@@ -132,26 +134,35 @@ const Signup = () => {
   return (
     <VStack color="white" spacing="5px">
       <FormControl id="first-name" isRequired>
-        <FormLabel>Name</FormLabel>
+        <FormLabel color={theme === "light" ? "white" : "black"}>
+          Name
+        </FormLabel>
         <Input
           placeholder="Enter Your Name"
+          _placeholder={{ color: "#718D97" }}
           onChange={(e) => setName(e.target.value)}
         />
       </FormControl>
       <FormControl id="email" isRequired>
-        <FormLabel>Email Address</FormLabel>
+        <FormLabel color={theme === "light" ? "white" : "black"}>
+          Email Address
+        </FormLabel>
         <Input
           type="email"
           placeholder="Enter Your Email Address"
+          _placeholder={{ color: "#718D97" }}
           onChange={(e) => setEmail(e.target.value)}
         />
       </FormControl>
       <FormControl id="password" isRequired>
-        <FormLabel>Password</FormLabel>
+        <FormLabel color={theme === "light" ? "white" : "black"}>
+          Password
+        </FormLabel>
         <InputGroup size="md">
           <Input
             type={show ? "text" : "password"}
             placeholder="Enter Password"
+            _placeholder={{ color: "#718D97" }}
             onChange={(e) => setPassword(e.target.value)}
           />
           <InputRightElement width="4.5rem">
@@ -162,11 +173,14 @@ const Signup = () => {
         </InputGroup>
       </FormControl>
       <FormControl id="password" isRequired>
-        <FormLabel>Confirm Password</FormLabel>
+        <FormLabel color={theme === "light" ? "white" : "black"}>
+          Confirm Password
+        </FormLabel>
         <InputGroup size="md">
           <Input
             type={show ? "text" : "password"}
             placeholder="Confirm password"
+            _placeholder={{ color: "#718D97" }}
             onChange={(e) => setConfirmpassword(e.target.value)}
           />
           <InputRightElement width="4.5rem">
@@ -177,7 +191,9 @@ const Signup = () => {
         </InputGroup>
       </FormControl>
       <FormControl id="pic">
-        <FormLabel>Upload your Picture</FormLabel>
+        <FormLabel color={theme === "light" ? "white" : "black"}>
+          Upload your Picture
+        </FormLabel>
         <Input
           type="file"
           p={1.5}
