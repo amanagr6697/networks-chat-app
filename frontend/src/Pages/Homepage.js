@@ -28,21 +28,21 @@ function Homepage() {
         d="flex"
         justifyContent="center"
         p={3}
-        bg="white"
+        bg="black"
         w="100%"
         m="40px 0 15px 0"
         borderRadius="lg"
         borderWidth="1px"
       >
-        <Text fontSize="4xl" fontFamily="Foldit">
+        <Text fontSize="4xl" fontFamily="Lora">
           अमन  मिहिर  वार्तालाप
         </Text>
       </Box>
-      <Box bg="white" w="100%" p={4} borderRadius="lg" borderWidth="1px">
+      <Box bg="black" w="100%" p={4} borderRadius="lg" borderWidth="1px">
         <Tabs isFitted variant="soft-rounded">
           <TabList mb="1em">
-            <Tab>Login</Tab>
-            <Tab>Sign Up</Tab>
+            <Tab color="white">Login</Tab>
+            <Tab color="white">Sign Up</Tab>
           </TabList>
           <TabPanels>
             <TabPanel>

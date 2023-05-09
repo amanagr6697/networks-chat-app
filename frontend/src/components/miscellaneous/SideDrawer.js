@@ -136,7 +136,7 @@ function SideDrawer() {
         d="flex"
         justifyContent="space-between"
         alignItems="center"
-        bg="dark"
+        bg="black"
         w="100%"
         p="5px 10px 5px 10px"
         borderWidth="5px"
@@ -149,7 +149,7 @@ function SideDrawer() {
             </Text>
           </Button>
         </Tooltip>
-        <Text fontSize="2xl" fontFamily="Foldit">
+        <Text fontSize="2xl" fontFamily="Lora">
           अमन मिहिर वार्तालाप
         </Text>
         <div>
@@ -179,7 +179,7 @@ function SideDrawer() {
             </MenuList>
           </Menu>
           <Menu>
-            <MenuButton as={Button} bg="dark" rightIcon={<ChevronDownIcon />}>
+            <MenuButton as={Button} bg="black" rightIcon={<ChevronDownIcon />}>
               <Avatar
                 size="sm"
                 cursor="pointer"

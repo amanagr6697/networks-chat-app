@@ -212,7 +212,7 @@ const UpdateGroupChatModal = ({ fetchMessages, fetchAgain, setFetchAgain }) => {
         <ModalContent>
           <ModalHeader
             fontSize="35px"
-            fontFamily="Foldit"
+            fontFamily="Lora"
             d="flex"
             justifyContent="center"
           >

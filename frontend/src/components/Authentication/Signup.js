@@ -130,7 +130,7 @@ const Signup = () => {
   };
 
   return (
-    <VStack color="green" spacing="5px">
+    <VStack color="white" spacing="5px">
       <FormControl id="first-name" isRequired>
         <FormLabel>Name</FormLabel>
         <Input

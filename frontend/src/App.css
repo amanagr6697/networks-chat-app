@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Foldit:wght@100&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lora:wght@100&display=swap");
 
 .App {
   min-height: 100vh;
@@ -21,4 +21,4 @@
   background: #555;
 }
 
-font-family: 'Foldit', cursive;
+font-family: 'Lora', cursive;
